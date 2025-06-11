@@ -1,15 +1,13 @@
+import { BrowserRouter } from 'react-router-dom';
+import Dashboard from './components/Dashboard';
 import './index.css'
-function App() {
 
+function App() {
   return (
-    <>
-     <button className="btn btn-xs">Xsmall</button>
-<button className="btn btn-sm">Small</button>
-<button className="btn">Medium</button>
-<button className="btn btn-lg">Large</button>
-<button className="btn btn-xl">Xlarge</button>
-    </>
-  )
+    <BrowserRouter>
+      <Dashboard />
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
