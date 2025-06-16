@@ -27,13 +27,13 @@ const Dashboard = () => {
                         <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'}`}>Home</span>
                     </Link>
                     <Link
-                        to="/users"
-                        className={`flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 ${isActive('/users') ? 'bg-gray-100' : ''}`}
+                        to="/membres"
+                        className={`flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 ${isActive('/membres') ? 'bg-gray-100' : ''}`}
                     >
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
-                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'}`}>Users</span>
+                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'}`}>Membres</span>
                     </Link>
                     <Link
                         to="/analytics"
