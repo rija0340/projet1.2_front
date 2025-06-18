@@ -30,7 +30,7 @@ import { Link, useNavigate } from 'react-router-dom';
         }
 
     return (
-        <div className="overflow-x-auto m-10 card shadow-xl bg-base-100">
+        <div className="overflow-x-auto m-6 card shadow-xl bg-base-100">
             <div className="card-body">
                 <div className="flex justify-between items-center mb-4">
                     <h2 className="card-title text-2xl">Liste des membres</h2>
