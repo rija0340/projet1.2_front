@@ -6,6 +6,7 @@ import MembreList from '../features/membre/MembreList';
 import { MembreCreate } from '../features/membre/MembreCreate';
 import MembreEdit from '../features/membre/MembreEdit';
 import { MembreDelete } from '../features/membre/MembreDelete';
+import Membre from '../pages/Membre';
 
 
 export const router = createBrowserRouter([
@@ -18,25 +19,31 @@ export const router = createBrowserRouter([
                 element: <Home />
             },
             {
-                path: 'membres',
-                element: <MembreList />
-            },
-            {
-                path: 'membres/new',
-                element: <MembreCreate />
-            },
-            {
                 path: 'analytics',
                 element: <Analytics />
             },
             {
-                path: 'membres/edit/:id',
-                element: <MembreEdit />
-            },
-            {
-                path: 'membres/delete/:id',
-                element: <MembreDelete />
-            },
+                path: 'membres',
+                element: <Membre />, // ✅ composant parent
+                children: [
+                  {
+                    index: true,
+                    element: <MembreList />
+                  },
+                  {
+                    path: 'new',
+                    element: <MembreCreate />
+                  },
+                  {
+                    path: 'edit/:id',
+                    element: <MembreEdit />
+                  },
+                  {
+                    path: 'delete/:id',
+                    element: <MembreDelete />
+                  }
+                ]
+              }
         ]
     }
 ]); 
