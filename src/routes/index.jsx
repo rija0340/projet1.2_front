@@ -3,6 +3,10 @@ import Dashboard from '../pages/Dashboard';
 import Home from '../pages/Home';
 import Analytics from '../pages/Analytics';
 import MembreList from '../features/membre/MembreList';
+import { MembreCreate } from '../features/membre/MembreCreate';
+import MembreEdit from '../features/membre/MembreEdit';
+import { MembreDelete } from '../features/membre/MembreDelete';
+
 
 export const router = createBrowserRouter([
     {
@@ -18,9 +22,21 @@ export const router = createBrowserRouter([
                 element: <MembreList />
             },
             {
+                path: 'membres/new',
+                element: <MembreCreate />
+            },
+            {
                 path: 'analytics',
                 element: <Analytics />
-            }
+            },
+            {
+                path: 'membres/edit/:id',
+                element: <MembreEdit />
+            },
+            {
+                path: 'membres/delete/:id',
+                element: <MembreDelete />
+            },
         ]
     }
 ]); 

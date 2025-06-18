@@ -12,6 +12,8 @@ export const getMembres = async () => {
 //create membre 
 export const createMembre = async (membre) => {
     const response = await api.post('/membres', membre);
+    console.log("create membre response");
+    console.log(response);
     return response.data;
 };
 

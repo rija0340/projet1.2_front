@@ -1,23 +1,43 @@
 import { getMembres } from '../../api/membre';
 import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-const MembreList = () => {
-    const [membres, setMembres] = useState([]);
+    const MembreList = () => {
+        const [membres, setMembres] = useState([]);
+        const [selectedMemberId, setSelectedMemberId] = useState(null);
+        const navigate = useNavigate();
 
-    useEffect(() => {
-        getMembres().then(response => {
-            const data = response["hydra:member"];
-            setMembres(data);
-            console.log("Fetched membres:", data);
-        }).catch(error => {
-            console.error("Error fetching membres:", error);
-        });
-    }, []);
-    //adjust the table to the data 
+        useEffect(() => {
+            getMembres().then(response => {
+                const data = response["hydra:member"];
+                setMembres(data);
+                console.log("Fetched membres:", data);
+            }).catch(error => {
+                console.error("Error fetching membres:", error);
+            });
+        }, []);
+
+
+        const handleEditMembre = (membreId) => {
+            navigate(`/membres/edit/${membreId}`);
+        }
+        const handleCreateMembre = () => {
+            navigate('/membres/new');
+        }
+
+        const handleDeleteMembre = (membreId) => {
+            navigate(`/membres/delete/${membreId}`);
+        }
 
     return (
         <div className="overflow-x-auto m-10 card shadow-xl bg-base-100">
             <div className="card-body">
+                <div className="flex justify-between items-center mb-4">
+                    <h2 className="card-title text-2xl">Liste des membres</h2>
+                    <button onClick={handleCreateMembre} className="btn btn-primary">
+                        Ajouter un membre
+                    </button>
+                </div>
                 <table className="table">
                     <thead>
                         <tr>
@@ -25,7 +45,7 @@ const MembreList = () => {
                             <th>Nom & Prénom</th>
                             <th>Occupation</th>
                             <th>Téléphone</th>
-                            <th>Action</th>
+                            <th className='text-center' >Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,7 +77,16 @@ const MembreList = () => {
                                 </td>
                                 <td>{membre.telephone || '—'}</td>
                                 <th>
-                                    <button className="btn btn-ghost btn-xs">Details</button>
+                                    {/* make these buttons centerer */}
+                                    <div className="flex justify-center">
+                                    <button onClick={() => handleEditMembre(membre.id)} className="btn btn-outline btn-success mr-1">Modifier 
+                                    </button>
+                                    {/* <button className="btn btn-outline btn-info mr-1">Info</button> */}
+                                    <button  onClick={()=>{
+                                        setSelectedMemberId(membre.id);
+                                        document.getElementById('my_modal_1').showModal();
+                                        }} className="btn btn-outline btn-error">Supprimer</button>
+                                    </div>
                                 </th>
                             </tr>
                         ))}
@@ -73,6 +102,21 @@ const MembreList = () => {
                     </tfoot>
                 </table>
             </div>
+
+        <dialog id="my_modal_1" className="modal">
+        <div className="modal-box">
+            <h3 className="font-bold text-lg text-red-500">suppression!</h3>
+            <p className="py-4">Est ce que vous voulez supprimer ce membre ?</p>
+            <div className="modal-action">
+                <button onClick={()=>handleDeleteMembre(selectedMemberId)} className="btn btn-outline btn-error">Supprimer</button>
+            <form method="dialog">
+                {/* if there is a button in form, it will close the modal */}
+                <button className="btn">Annuler</button>
+            </form>
+            </div>
+        </div>
+        </dialog>
+
         </div>
     );
 };
