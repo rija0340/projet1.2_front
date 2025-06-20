@@ -29,14 +29,23 @@ import { Link, useNavigate } from 'react-router-dom';
             navigate(`/membres/delete/${membreId}`);
         }
 
+        const handleImportMembre = () => {
+            navigate('/membres/import-xslx');
+        }
+
     return (
         <div className="overflow-x-auto m-6 card shadow-xl bg-base-100">
             <div className="card-body">
                 <div className="flex justify-between items-center mb-4">
                     <h2 className="card-title text-2xl">Liste des membres</h2>
-                    <button onClick={handleCreateMembre} className="btn btn-primary">
-                        Ajouter un membre
-                    </button>
+                    <div className='flex gap-2'>
+                        <button onClick={handleCreateMembre} className="btn btn-primary">
+                            Ajouter un membre
+                        </button>
+                        <button onClick={handleImportMembre} className="btn btn-secondary">
+                            Importer un xlsx
+                        </button>
+                    </div>
                 </div>
                 <table className="table">
                     <thead>
