@@ -7,7 +7,7 @@ import { MembreCreate } from '../features/membre/MembreCreate';
 import MembreEdit from '../features/membre/MembreEdit';
 import { MembreDelete } from '../features/membre/MembreDelete';
 import Membre from '../pages/Membre';
-
+import MembreXlsxImport from '../features/membre/MembreXlsxImport';
 
 export const router = createBrowserRouter([
     {
@@ -41,6 +41,10 @@ export const router = createBrowserRouter([
                   {
                     path: 'delete/:id',
                     element: <MembreDelete />
+                  },
+                  {
+                    path: 'import-xslx',
+                    element: <MembreXlsxImport />
                   }
                 ]
               }
